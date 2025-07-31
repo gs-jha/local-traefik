@@ -1,0 +1,8 @@
+[gd-block]
+enabled  = true
+filter   = gd-block
+logpath  = /var/log/nginx/access.log
+maxretry = 5
+findtime = 3600
+bantime  = 3600
+action   = cloudflare-ip-block

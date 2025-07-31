@@ -1,0 +1,21 @@
+http:
+  routers:
+    traefik:
+      rule: "Host(`traefik.gyandhan.localhost`) || Host(`192.168.1.176`)"
+      service: "api@internal"
+      tls:
+        domains:
+          - main: "gsjha.localhost"
+            sans:
+              - "*.gsjha.localhost"
+          - main: "gyandhan.localhost"
+            sans:
+              - "*.gyandhan.localhost"
+          - main: "192.168.1.176"
+            sans:
+              - "*.192.168.1.176``
+
+tls:
+  certificates:
+    - certFile: "/etc/certs/local-cert.pem"
+      keyFile: "/etc/certs/local-key.pem"

@@ -1,0 +1,26 @@
+
+version: '3'
+services:
+  nginx:
+    build: .
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./:/etc/nginx/
+      - ./fail2ban:/etc/fail2ban
+      - ./logs:/var/log/nginx
+      - ./static:/usr/share/nginx/html
+      - ./logs/fail2ban:/var/log/fail2ban
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.gyandhan.localhost`)"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
